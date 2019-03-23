@@ -12,11 +12,11 @@ def fast_RC(A, sequence=None):
 class RC(object):
     
     def __init__(self,g,scores=None,mode=2, ranks=None):
-	from numpy import argsort
+        from numpy import argsort
         self.g = g
         if scores is None:
-	    from numpy import array
-            self.scores = array(g.strength(weights='weight',mode=mode))
+           from numpy import array
+           self.scores = array(g.strength(weights='weight',mode=mode))
         else:
             self.scores = scores
         self.order = argsort(self.scores)
@@ -24,7 +24,7 @@ class RC(object):
         
         if ranks is not None:
             self.ranks = ranks
-	    from numpy import where
+            from numpy import where
             self.order = [where((self.ranks[r]<=self.scores) * 
                                 (self.scores<self.ranks[r+1]))[0] for r in range(len(self.ranks)-1)]
 
@@ -35,16 +35,16 @@ class RC(object):
         #    self.order = [order[tier_breaks[i]:tier_breaks[i+1]] for i in arange(len(tier_breaks)-1)]
         
     def _ts(self, rank):
-	from numpy import where
+        from numpy import where
         s = where(self.scores<rank)[0]
         self.scores = self.scores[self.scores>rank]
         return s
     
     def _rc(self, n):
-	try:
-            self.G.delete_vertices(map(str,n))
-	except TypeError:
-            self.G.delete_vertices(str(n))
+        try:
+                self.G.delete_vertices(map(str,n))
+        except TypeError:
+                self.G.delete_vertices(str(n))
         return self.G
     
     def phis(self,**kwargs):
@@ -89,8 +89,8 @@ def directed_spr(G, n_rewires=10, preserve='out', average_weight_by_node=False):
     rerolls = 0
     while i < (n_rewires * nes):
         if rerolls > n_rewires * nes:
-            print "Halted after %i failed rewirings and"\
-                "%i successful rewirings" % (rerolls, i)
+            print("Halted after %i failed rewirings and"\
+                "%i successful rewirings" % (rerolls, i))
             return g
 
         e1 = randint(nes)
