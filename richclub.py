@@ -55,7 +55,7 @@ class RC(object):
         if ns is None:
             ns = self.n_nodes
         self.G = self.g.copy()
-        self.G.vs['name'] = map(str,range(self.G.vcount()))
+        self.G.vs['name'] = list(map(str,range(self.G.vcount())))
         return [f(self._rc(n)) for n in self.order[:ns]]
 
 def directed_spr(G, n_rewires=10, preserve='out', average_weight_by_node=False):
@@ -230,8 +230,8 @@ def rich_club_coefficient(graph, richness=None,
 
     scores = richness_scores(graph, richness=richness)
 
-    from types import FunctionType, FloatType
-    if type(rank) == FloatType:
+    from types import FunctionType
+    if type(rank) == float:
         rank = [rank]
 
     if rank is None:
