@@ -561,7 +561,7 @@ def preserve_strength(g, randomize_topology=False, preserve_mode='estimate_both'
         if permute_strength:
             from numpy.random import permutation
             from numpy import unique
-            out_in_sequence = array(zip(list(out_degree, in_degree)))
+            out_in_sequence = array(list(zip(out_degree, in_degree)))
             for k in unique(out_in_sequence):
                 k_ind = where((out_in_sequence == k).all(axis=1))[0]
                 new_ind = permutation(k_ind)
